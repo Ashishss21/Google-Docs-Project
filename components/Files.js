@@ -20,7 +20,7 @@ function Files() {
             <Icon name="more_vert " size="3xl" />
           </Button>
         </div>
-        <div className="relative h-52 w-48 shadow-md cursor-pointer">
+        <div className="relative h-52 w-48 hover:shadow-lg cursor-pointer">
             <Image src="/images/plus.png" alt="PlusIconGoogle" layout="fill" className="border-3" />
         </div>   
         <p className="ml-2 mt-2 font-semibold text-sm text-gray-600">Blank</p>
