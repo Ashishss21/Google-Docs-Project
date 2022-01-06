@@ -17,12 +17,8 @@ export default function Home() {
         <title>Google Docs</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-
-      {/* Importing Header */}
       <Header />
-      {/* Importing Status and new file component */}
       <Files/>
-
       <AllFiles/>
     </div>
   )
