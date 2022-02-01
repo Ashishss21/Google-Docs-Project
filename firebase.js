@@ -1,27 +1,24 @@
-import firebase from 'firebase';
+//Importing Firebase Dependencies
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-const firebaseConfig = {
+//Firebase Configuration Import
+import { firebaseConfig } from "./firebase.config";
 
-  apiKey: "AIzaSyAj4JrUnDK9Eat1Z2uVpg6h25chCQxxJKA",
+// Initialize Firebase
+if (!firebase.apps.length) {
+  const firebaseApp = initializeApp(firebaseConfig);
+}
+else{
+  firebase.app();
+}
 
-  authDomain: "docs-94968.firebaseapp.com",
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+const provider = new GoogleAuthProvider();
+const storage = getStorage(firebaseApp);
 
-  projectId: "docs-94968",
-
-  storageBucket: "docs-94968.appspot.com",
-
-  messagingSenderId: "774695656953",
-
-  appId: "1:774695656953:web:a82a7216cac0184b947128"
-
-};
-  // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
-const storage = firebase.storage();
-
-export {auth, provider, storage};
+export { auth, provider, storage };
 export default db;
