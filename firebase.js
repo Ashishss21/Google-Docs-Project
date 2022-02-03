@@ -8,12 +8,10 @@ import { getStorage } from "firebase/storage";
 import { firebaseConfig } from "./firebase.config";
 
 // Initialize Firebase
-if (!firebase.apps.length) {
-  const firebaseApp = initializeApp(firebaseConfig);
-}
-else{
-  firebase.app();
-}
+
+
+const firebaseApp = initializeApp(firebaseConfig);
+
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
