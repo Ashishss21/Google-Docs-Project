@@ -2,9 +2,9 @@ import Image from "next/image";
 import Button from "@material-tailwind/react/Button";
 import { auth, provider } from "../firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-// import { signIn } from "next-auth/client";
+import { signIn } from "next-auth/client";
 
-const signIn = () => {
+const signInFire = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
