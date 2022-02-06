@@ -1,50 +1,54 @@
-import Button from "@material-tailwind/react/Button";
-import Icon from "@material-tailwind/react/Icon";
+import React from 'react';
+import { IconButton } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import DescriptionIcon from '@material-ui/icons/Description';
+import SearchIcon from '@material-ui/icons/Search';
+import AppsIcon from '@material-ui/icons/Apps';
+import { signOut } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
 
-function Header() {
+const Header = () => {
+  const [session] = useSession();
+
+
   return (
-    <header className="sticky top-0 z-50 px-4 py-2 flex items-center shadow-md bg-white">
-      <Button
-        color="gray"
-        buttonType="outline"
-        size="regular"
-        rounded={true}
-        iconOnly={true}
-        ripple="dark"
-        className="h-20 w-20 border-0"
-      >
-        <Icon name="menu" size="3xl" />
-      </Button>
-      <Icon name="description" size="5xl" color="blue" />
-      <h1 className="ml-2 text-gray-700 text-2xl">Docs</h1>
+    <header className="p-2 shadow-md sticky top-0 bg-white z-50">
+      <div className="grid grid-cols-4">
 
-      <div className="flex flex-grow items-center px-5 py-2 mx-5 bg-gray-100 overflow-hidden text-gray-600 rounded-lg md:mx-20 focus-within:shadow-md">
-        <Icon name="search" size="3xl" color="gray" />
-        <input
-          type="search"
-          placeholder="search"
-          className="flex-grow px-5 text-base outline-none bg-transparent"
-        />
+        <div className="flex items-center col-span-1">
+          <IconButton>
+            <MenuIcon />
+          </IconButton>
+          <div className="text-[#2196f3] items-center space-x-2 ml-3 hidden md:inline-flex">
+            <DescriptionIcon fontSize="large" />
+            <p className="text-xl text-gray-500">Docs</p>
+          </div>
+        </div>
+
+        <div className="col-span-2">
+          <div className="bg-gray-100 rounded-lg hidden md:inline-flex w-full items-center space-x-1 text-gray-500 focus-within:text-gray-600 focus-within:shadow-md">
+            <IconButton>
+              <SearchIcon />
+            </IconButton>
+            <input type="text" className="flex-grow outline-none bg-transparent" />
+          </div>
+        </div>
+
+        <div className="flex items-center col-span-1 justify-end space-x-1">
+          <div className="inline-block md:hidden">
+            <IconButton>
+              <SearchIcon />
+            </IconButton>
+          </div>
+          <IconButton>
+            <AppsIcon />
+          </IconButton>
+          <IconButton onClick={signOut}>
+            <img src={session?.user.image} className=" rounded-full h-[24px] w-[24px] " alt="" />
+          </IconButton>
+        </div>
+
       </div>
-
-      <Button
-        color="gray"
-        buttonType="outline"
-        size="regular"
-        rounded={true}
-        iconOnly={true}
-        ripple="dark"
-        className="ml-5 h-20 w-20 border-0"
-      >
-        <Icon name="apps" size="3xl" />
-      </Button>
-
-      <img
-        loading="lazy"
-        className="cursor-pointer h-12 w-12 rounded-full ml-2"
-        src="/images/tejas.jpg"
-        alt="UserImg"
-      />
     </header>
   );
 }

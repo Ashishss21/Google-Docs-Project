@@ -1,22 +1,9 @@
-//Importing Firebase Dependencies
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import firebase from 'firebase';
 
-//Firebase Configuration Import
-import { firebaseConfig } from "./firebase.config";
+import { firebaseConfig } from './firebase.config.js';
 
-// Initialize Firebase
+const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
+const db = app.firestore();
 
-const firebaseApp = initializeApp(firebaseConfig);
-
-
-const db = getFirestore(firebaseApp);
-const auth = getAuth(firebaseApp);
-const provider = new GoogleAuthProvider();
-const storage = getStorage(firebaseApp);
-
-export { auth, provider, storage, db };
-// export default db;
+export default db;
